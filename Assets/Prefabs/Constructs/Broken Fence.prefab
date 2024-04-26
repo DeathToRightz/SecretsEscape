@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &129656990190314304
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 424753736855900926, guid: 46e267da9823ccf4e826d100f75ddce3, type: 3}
+      propertyPath: m_Name
+      value: Fence Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 930420589421714061, guid: 46e267da9823ccf4e826d100f75ddce3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 930420589421714061, guid: 46e267da9823ccf4e826d100f75ddce3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 930420589421714061, guid: 46e267da9823ccf4e826d100f75ddce3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 930420589421714061, guid: 46e267da9823ccf4e826d100f75ddce3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 930420589421714061, guid: 46e267da9823ccf4e826d100f75ddce3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 930420589421714061, guid: 46e267da9823ccf4e826d100f75ddce3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 930420589421714061, guid: 46e267da9823ccf4e826d100f75ddce3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 930420589421714061, guid: 46e267da9823ccf4e826d100f75ddce3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 930420589421714061, guid: 46e267da9823ccf4e826d100f75ddce3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 930420589421714061, guid: 46e267da9823ccf4e826d100f75ddce3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 1496181984692611331, guid: 46e267da9823ccf4e826d100f75ddce3, type: 3}
+    - {fileID: 8308248764173741087, guid: 46e267da9823ccf4e826d100f75ddce3, type: 3}
+    - {fileID: 4966799640236297810, guid: 46e267da9823ccf4e826d100f75ddce3, type: 3}
+    - {fileID: 7608504140226915503, guid: 46e267da9823ccf4e826d100f75ddce3, type: 3}
+    - {fileID: 4916048025257210815, guid: 46e267da9823ccf4e826d100f75ddce3, type: 3}
+    - {fileID: 8065383633254248713, guid: 46e267da9823ccf4e826d100f75ddce3, type: 3}
+    - {fileID: 1383331941501413971, guid: 46e267da9823ccf4e826d100f75ddce3, type: 3}
+    - {fileID: 598764110858379792, guid: 46e267da9823ccf4e826d100f75ddce3, type: 3}
+    - {fileID: 989472002880083357, guid: 46e267da9823ccf4e826d100f75ddce3, type: 3}
+    - {fileID: 709449963958696784, guid: 46e267da9823ccf4e826d100f75ddce3, type: 3}
+    - {fileID: 8147912095525585375, guid: 46e267da9823ccf4e826d100f75ddce3, type: 3}
+    - {fileID: 4073612908144898669, guid: 46e267da9823ccf4e826d100f75ddce3, type: 3}
+    - {fileID: 7375820373494686025, guid: 46e267da9823ccf4e826d100f75ddce3, type: 3}
+    - {fileID: 7492555382379881562, guid: 46e267da9823ccf4e826d100f75ddce3, type: 3}
+    - {fileID: 1063874649282411, guid: 46e267da9823ccf4e826d100f75ddce3, type: 3}
+    - {fileID: 7331531084467157209, guid: 46e267da9823ccf4e826d100f75ddce3, type: 3}
+    - {fileID: 7912805322754477448, guid: 46e267da9823ccf4e826d100f75ddce3, type: 3}
+    - {fileID: 741912635043321219, guid: 46e267da9823ccf4e826d100f75ddce3, type: 3}
+    - {fileID: 477204321411420844, guid: 46e267da9823ccf4e826d100f75ddce3, type: 3}
+    - {fileID: 4804604195526086773, guid: 46e267da9823ccf4e826d100f75ddce3, type: 3}
+    - {fileID: 2674348793772587485, guid: 46e267da9823ccf4e826d100f75ddce3, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 46e267da9823ccf4e826d100f75ddce3, type: 3}
