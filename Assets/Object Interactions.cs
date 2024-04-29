@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractableObjects : MonoBehaviour
+public class ObjectInteractions : MonoBehaviour
 {
-    [SerializeField] string name = "Default";
-    void Start()
+    [SerializeField] public enum items
     {
-        
+        Shovel
     }
+    [SerializeField] public items itemName;
+
+   
+   
 
     // Update is called once per frame
     void Update()
