@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Guard : MonoBehaviour
 {
-    // Start is called before the first frame update
+    RaycastHit sightline;
     void Start()
     {
         
@@ -13,6 +13,16 @@ public class Guard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Physics.Raycast(transform.position, transform.forward * 15, out sightline);
+        Debug.DrawRay(transform.position, Quaternion.Euler(0, 30f, 0) * transform.forward, Color.red);
+        if (sightline.transform.gameObject.name == "Player")
+        {
+            Debug.Log("I see you");
+        }
+
+
+
     }
+
+
 }
