@@ -16,8 +16,10 @@ public class FPCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * sensX;
-        float mouseY = Input.GetAxis("Mouse Y") * Time.deltaTime * sensY;
+        
+        
+        float mouseX = Input.GetAxis("Mouse X")  * sensX * 0.01f;
+        float mouseY = Input.GetAxis("Mouse Y")  * sensY * 0.01f;
 
         yRotation += mouseX;
         xRotation -= mouseY;

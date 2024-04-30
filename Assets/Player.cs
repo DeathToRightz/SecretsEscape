@@ -73,15 +73,10 @@ public class Player : MonoBehaviour
             {
                 if (itemDescription.itemName == ObjectInteractions.items.Shovel && cameraPointer.transform.tag == "Dirt")
                 {
+                    Destroy(cameraPointer.transform.gameObject);
                     Debug.Log("Dig");
                 }
-            }
-            
-            
-            
-            
-                
-            
+            }       
         }
     }
     private void FixedUpdate()
