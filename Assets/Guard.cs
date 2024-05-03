@@ -11,25 +11,22 @@ public class Guard : MonoBehaviour
     [SerializeField] Transform guardFOV;
     public NavMeshAgent guardAgent;
     
-    public  bool SightCone()
+    public void SightCone()
     {
         for (int i = -45; i <= 45; i += 15)
         {
-            if (Physics.Raycast(guardFOV.position, transform.forward, out sightline, 10))
+            if (Physics.Raycast(guardFOV.position, Quaternion.Euler(0,i,0) * transform.forward, out sightline, 10))
             {
                 if (sightline.transform.name == "Player")
                 {
-                    return seePlayer = true;
+                     seePlayer = true;
                 }
                 else if (sightline.transform.name != "Player")
                 {
-                   return  seePlayer = false;
+                     seePlayer = false;
                 }
             }
-
             Debug.DrawRay(guardFOV.position, Quaternion.Euler(0, i, 0) * transform.forward * 10, Color.red);
-            
-        }
-        return  seePlayer = false;
+        }        
     }
 }

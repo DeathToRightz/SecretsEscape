@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.AI;
 public class OutsideGuard : Guard
 {
-    [SerializeField] GameObject[] guard1Wapoints;
-    private Vector3[] guard1WapointsLocations;
-    Vector3[] guard2Wapoints;
-    public int guardWaypointIndex = 0;
+    [SerializeField] GameObject[] guard1Waypoints, guard2Waypoints;
+    [SerializeField] GameObject player;
+    private Vector3[] guard1WapointsLocations, guard2WaypointsLocations;
+    private int guardWaypointIndex = 0;
+    private float guardSpeed = 3.5f;
     private enum Guard
     {
         Guard1,
@@ -16,8 +17,10 @@ public class OutsideGuard : Guard
     [SerializeField] Guard guardVersion;
     private void Awake()
     {
+       
         guardAgent = GetComponent<NavMeshAgent>();
-        ObtainWaypointLocations(guard1Wapoints);     
+        ObtainWaypointLocations(guard1Waypoints);     
+        ObtainWaypointLocations(guard2Waypoints);     
 
     }
 
@@ -25,30 +28,36 @@ public class OutsideGuard : Guard
     void Update()
     {
         SightCone();
-
-        if( guardVersion.Equals(Guard.Guard1) )
+        if( guardVersion.Equals(Guard.Guard1))
         {
             if(!guardAgent.pathPending && guardAgent.remainingDistance < 0.5f)
             {
+
                 PatrolRoute(guard1WapointsLocations);
-            }
-           
+            }          
         }
         else
         {
-            PatrolRoute(guard2Wapoints);
+            PatrolRoute(guard2WaypointsLocations);
         }
         
+        //ChasePlayer(seePlayer); 
     }
-
-    void PatrolRoute(Vector3[] guardWaypoints)
+    private void LateUpdate()
     {
+        ChasePlayer(seePlayer);
+        
+    }
+    void PatrolRoute(Vector3[] guardWaypoints)
+    {       
         if (guardWaypoints.Length == 0)
         {
             return;
         }
-        guardAgent.destination = guardWaypoints[guardWaypointIndex];
-        guardWaypointIndex = (guardWaypointIndex + 1) % guardWaypoints.Length;     
+        
+            guardAgent.destination = guardWaypoints[guardWaypointIndex];
+            guardWaypointIndex = (guardWaypointIndex + 1) % guardWaypoints.Length;
+       
     }
 
     void ObtainWaypointLocations(GameObject[] guardWaypoints)
@@ -57,8 +66,22 @@ public class OutsideGuard : Guard
         for(int i = 0; i <= guardWaypoints.Length-1; i++)
         {
             guard1WapointsLocations[i] = guardWaypoints[i].transform.position;
+        }               
+    }
+
+    void ChasePlayer(bool seePlayer)
+    {
+        if( seePlayer )
+        {
+            guardAgent.destination = player.transform.position;
+            transform.LookAt(player.transform.position);
+            guardAgent.speed = guardSpeed * 2;
+          
         }
-        
-        
+        else
+        {
+            guardAgent.speed = guardSpeed;
+            return;
+        }
     }
 }
