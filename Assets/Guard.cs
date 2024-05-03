@@ -9,11 +9,8 @@ public class Guard : MonoBehaviour
     private RaycastHit sightline;
     public bool seePlayer;
     [SerializeField] Transform guardFOV;
-    private NavMeshAgent agent;
-    private void Start()
-    {
-        
-    }
+    public NavMeshAgent guardAgent;
+    
     public  bool SightCone()
     {
         for (int i = -45; i <= 45; i += 15)
