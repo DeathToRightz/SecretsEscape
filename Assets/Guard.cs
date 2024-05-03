@@ -1,28 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Guard : MonoBehaviour
 {
-    RaycastHit sightline;
-    void Start()
+    private RaycastHit sightline;
+    public bool seePlayer;
+    [SerializeField] Transform guardFOV;
+    private NavMeshAgent agent;
+    private void Start()
     {
         
     }
-
-    // Update is called once per frame
-    void Update()
+    public  bool SightCone()
     {
-        Physics.Raycast(transform.position, transform.forward * 15, out sightline);
-        Debug.DrawRay(transform.position, Quaternion.Euler(0, 30f, 0) * transform.forward, Color.red);
-        if (sightline.transform.gameObject.name == "Player")
+        for (int i = -45; i <= 45; i += 15)
         {
-            Debug.Log("I see you");
+            if (Physics.Raycast(guardFOV.position, transform.forward, out sightline, 10))
+            {
+                if (sightline.transform.name == "Player")
+                {
+                    return seePlayer = true;
+                }
+                else if (sightline.transform.name != "Player")
+                {
+                   return  seePlayer = false;
+                }
+            }
+
+            Debug.DrawRay(guardFOV.position, Quaternion.Euler(0, i, 0) * transform.forward * 10, Color.red);
+            
         }
-
-
-
+        return  seePlayer = false;
     }
-
-
 }
