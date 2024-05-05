@@ -231,14 +231,13 @@ public class Player : MonoBehaviour
 
     private void EnterCode(RaycastHit cameraPointer)
     {
-        if (cameraPointer.transform.parent.name == "Numpad" && cameraPointer.transform.name != "Cancel")
+        if (cameraPointer.transform.parent.name == "Numpad" && cameraPointer.transform.name != "Cancel" && cameraPointer.transform.name != "Enter")
         {
-            code[codeIndex] = cameraPointer.transform.name;
-            Debug.Log(code[codeIndex]);
+            code[codeIndex] = cameraPointer.transform.name;           
             codeIndex++;
 
         }
-        else if (cameraPointer.transform.parent.name == "Numpad" && cameraPointer.transform.name == "Cancel")
+        else if (cameraPointer.transform.name == "Cancel")
         {
             codeIndex = 0;
             for (int i = 0; i < code.Length; i++)
@@ -246,5 +245,18 @@ public class Player : MonoBehaviour
                 code[i] = null;
             }
         }
+        else if (cameraPointer.transform.name == "Enter")
+        {
+            string codeDisplay = "";
+            foreach (string code in code)
+            {
+                codeDisplay += code;
+            }
+            Debug.Log(codeDisplay);
+            Debug.Log(cameraPointer.transform.parent.parent.name);
+
+
+        }
+
     }
 }
