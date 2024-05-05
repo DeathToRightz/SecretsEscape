@@ -4,9 +4,10 @@ using UnityEngine;
 using UnityEngine.AI;
 public class OutsideGuard : Guard
 {
-    [SerializeField] GameObject[] guard1Waypoints, guard2Waypoints;
+    // [SerializeField] GameObject[] guard1Waypoints, guard2Waypoints;
+    [SerializeField] GameObject[] wayPointsTest;
     [SerializeField] GameObject player;
-    private Vector3[] guard1WapointsLocations, guard2WaypointsLocations;
+    private Vector3[] guard1WapointsLocations, guard2WaypointsLocations, guardWaypointsTest;
     private int guardWaypointIndex = 0;
     private float guardSpeed = 3.5f;
     private enum Guard
@@ -19,8 +20,8 @@ public class OutsideGuard : Guard
     {
        
         guardAgent = GetComponent<NavMeshAgent>();
-        ObtainWaypointLocations(guard1Waypoints);     
-        ObtainWaypointLocations(guard2Waypoints);     
+        ObtainWaypointLocations(wayPointsTest);     
+       // ObtainWaypointLocations(guard2Waypoints);     
 
     }
 
@@ -28,7 +29,7 @@ public class OutsideGuard : Guard
     void Update()
     {
         SightCone();
-        if( guardVersion.Equals(Guard.Guard1))
+        /*if( guardVersion.Equals(Guard.Guard1))
         {
             if(!guardAgent.pathPending && guardAgent.remainingDistance < 0.5f)
             {
@@ -39,9 +40,14 @@ public class OutsideGuard : Guard
         else
         {
             PatrolRoute(guard2WaypointsLocations);
+        }*/
+        if (!guardAgent.pathPending && guardAgent.remainingDistance < 0.5f)
+        {
+
+            PatrolRoute(guardWaypointsTest);
         }
-        
-        //ChasePlayer(seePlayer); 
+
+
     }
     private void LateUpdate()
     {
@@ -62,10 +68,10 @@ public class OutsideGuard : Guard
 
     void ObtainWaypointLocations(GameObject[] guardWaypoints)
     {
-        guard1WapointsLocations = new Vector3[guardWaypoints.Length];
+        guardWaypointsTest = new Vector3[guardWaypoints.Length];
         for(int i = 0; i <= guardWaypoints.Length-1; i++)
         {
-            guard1WapointsLocations[i] = guardWaypoints[i].transform.position;
+            guardWaypointsTest[i] = guardWaypoints[i].transform.position;
         }               
     }
 
