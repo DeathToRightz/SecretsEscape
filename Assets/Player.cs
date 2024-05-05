@@ -33,10 +33,11 @@ public class Player : MonoBehaviour
     private bool readyToJump;      
     private RaycastHit itemInHand, cameraPointer;
     private bool handFull;
-    
-
+    public string[] code = new string[4];
+    private int codeIndex = 0;
     void Start()
     {
+        
         handFull = false;
         readyToJump = true;
         rb = GetComponent<Rigidbody>();
@@ -48,11 +49,24 @@ public class Player : MonoBehaviour
         GroundCheck();
         ControlSpeed();
         Physics.Raycast(cameraLocation.position, cameraLocation.forward, out cameraPointer, 2);
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetMouseButtonDown(0))
         {
-            DoorInteraction(cameraPointer);
+            EnterCode(cameraPointer);
+            if (cameraPointer.transform.parent.name == "Door")
+            {
+                DoorInteraction(cameraPointer);
+            }        
         }
-            
+        if(Input.GetKeyDown(KeyCode.G))
+        {
+            string display = "";
+            for (int i = 0; i < code.Length; i++)
+            {
+                display += code[i];
+            }
+            Debug.Log(display);
+        }    
+
         if(Input.GetKeyDown(KeyCode.Space) && readyToJump && isGrounded)
         {
             readyToJump  = false;
@@ -159,7 +173,7 @@ public class Player : MonoBehaviour
        
         if(Physics.Raycast(cameraLocation.position, cameraLocation.forward, out itemInHand, 4f))
         {                     
-                Debug.Log(itemInHand.transform.name);  
+               
             if(itemInHand.transform.tag == "Pick Up" && !handFull)
             {
                 PickUp(itemInHand.transform);
@@ -213,5 +227,24 @@ public class Player : MonoBehaviour
         }
 
         
+    }
+
+    private void EnterCode(RaycastHit cameraPointer)
+    {
+        if (cameraPointer.transform.parent.name == "Numpad" && cameraPointer.transform.name != "Cancel")
+        {
+            code[codeIndex] = cameraPointer.transform.name;
+            Debug.Log(code[codeIndex]);
+            codeIndex++;
+
+        }
+        else if (cameraPointer.transform.parent.name == "Numpad" && cameraPointer.transform.name == "Cancel")
+        {
+            codeIndex = 0;
+            for (int i = 0; i < code.Length; i++)
+            {
+                code[i] = null;
+            }
+        }
     }
 }

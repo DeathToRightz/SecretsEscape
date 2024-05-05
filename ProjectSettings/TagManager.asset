@@ -8,6 +8,8 @@ TagManager:
   - Dirt
   - BackDoorKnob
   - DoorKnob
+  - File
+  - safe
   layers:
   - Default
   - TransparentFX
