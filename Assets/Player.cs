@@ -4,7 +4,7 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.Animations;
 public class Player : MonoBehaviour
 {
 
@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
     private bool readyToJump;      
     private RaycastHit itemInHand, cameraPointer;
     private bool handFull;
+    
 
     void Start()
     {
@@ -46,13 +47,19 @@ public class Player : MonoBehaviour
     {
         GroundCheck();
         ControlSpeed();
-
+        Physics.Raycast(cameraLocation.position, cameraLocation.forward, out cameraPointer, 2);
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            DoorInteraction(cameraPointer);
+        }
+            
         if(Input.GetKeyDown(KeyCode.Space) && readyToJump && isGrounded)
         {
             readyToJump  = false;
             Jump();
             Invoke(nameof(ResetJump), 2);
         }
+
 
         Debug.DrawRay(cameraLocation.position,cameraLocation.forward * 10, Color.blue);
       
@@ -80,10 +87,10 @@ public class Player : MonoBehaviour
             }  
             
         }
-        if(Input.GetKeyDown(KeyCode.E) && Physics.Raycast(cameraLocation.position,cameraLocation.forward,out cameraPointer, 5) && cameraPointer.transform.tag == "BackDoorKnob")
+        /*if(Input.GetKeyDown(KeyCode.E) && Physics.Raycast(cameraLocation.position,cameraLocation.forward,out cameraPointer, 5) && cameraPointer.transform.tag == "BackDoorKnob")
         {
             SceneManager.LoadScene(1);
-        }
+        }*/
     }
     private void FixedUpdate()
     {
@@ -189,6 +196,22 @@ public class Player : MonoBehaviour
         Rigidbody rb= item.GetComponent<Rigidbody>();
         item.parent = null;
         rb.constraints = RigidbodyConstraints.None;
+        
+    }
+
+    private void DoorInteraction(RaycastHit cameraPointer)
+    {
+        bool doorOpen = cameraPointer.transform.GetComponentInParent<Animator>().GetBool("Opened");
+
+        if (cameraPointer.transform.tag == "DoorKnob" && !doorOpen)
+        {
+            cameraPointer.transform.GetComponentInParent<Animator>().SetBool("Opened", true);           
+        }
+        else if(cameraPointer.transform.tag == "DoorKnob" && doorOpen)
+        {
+            cameraPointer.transform.GetComponentInParent<Animator>().SetBool("Opened", false);
+        }
+
         
     }
 }
