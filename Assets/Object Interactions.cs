@@ -6,7 +6,8 @@ public class ObjectInteractions : MonoBehaviour
 {
     [SerializeField] public enum items
     {
-        Shovel
+        Shovel,
+        File
     }
     [SerializeField] public items itemName;
 

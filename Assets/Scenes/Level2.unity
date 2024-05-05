@@ -223,7 +223,7 @@ Transform:
   m_GameObject: {fileID: 87266380}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.4148569, z: -0, w: 0.90988666}
-  m_LocalPosition: {x: -17.625, y: 0.1311429, z: -4.903}
+  m_LocalPosition: {x: -17.647, y: 0.078, z: -4.903}
   m_LocalScale: {x: 0.064407706, y: 0.080761, z: 0.037467454}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2564,6 +2564,7 @@ GameObject:
   - component: {fileID: 782195837}
   - component: {fileID: 782195836}
   - component: {fileID: 782195835}
+  - component: {fileID: 782195838}
   m_Layer: 0
   m_Name: Safe Door
   m_TagString: Untagged
@@ -2658,6 +2659,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 782195833}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!95 &782195838
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782195833}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 680efacb424490a4dbe397645921b41c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &835178656
 GameObject:
   m_ObjectHideFlags: 0

@@ -34,6 +34,8 @@ public class Player : MonoBehaviour
     private RaycastHit itemInHand, cameraPointer;
     private bool handFull;
     public string[] code = new string[4];
+    private string correctCode = "1234";
+    //private string[] correctCode = new string[] {"1","2","3","4"};
     private int codeIndex = 0;
     void Start()
     {
@@ -48,25 +50,23 @@ public class Player : MonoBehaviour
     {
         GroundCheck();
         ControlSpeed();
-        Physics.Raycast(cameraLocation.position, cameraLocation.forward, out cameraPointer, 2);
-        if (Input.GetMouseButtonDown(0))
-        {
-            EnterCode(cameraPointer);
-            if (cameraPointer.transform.parent.name == "Door")
-            {
-                DoorInteraction(cameraPointer);
-            }        
-        }
-        if(Input.GetKeyDown(KeyCode.G))
-        {
-            string display = "";
-            for (int i = 0; i < code.Length; i++)
-            {
-                display += code[i];
-            }
-            Debug.Log(display);
-        }    
+        Debug.DrawRay(cameraLocation.position, cameraLocation.forward * 10, Color.blue);
+       
 
+
+        if (Input.GetMouseButtonDown(0) && Physics.Raycast(cameraLocation.position, cameraLocation.forward, out cameraPointer, 2))
+        {
+            
+            Debug.Log(cameraPointer.transform.name);
+            if (cameraPointer.transform.parent.name == "Numpad") { EnterCode(cameraPointer); }
+
+
+
+            if (cameraPointer.transform.parent.name == "Door") { DoorInteraction(cameraPointer); }
+            
+                    
+        }          
+      
         if(Input.GetKeyDown(KeyCode.Space) && readyToJump && isGrounded)
         {
             readyToJump  = false;
@@ -75,9 +75,9 @@ public class Player : MonoBehaviour
         }
 
 
-        Debug.DrawRay(cameraLocation.position,cameraLocation.forward * 10, Color.blue);
       
-        if(Input.GetMouseButtonDown(0) && !handFull)
+      
+        if(Input.GetKeyDown(KeyCode.E) && !handFull)
         {
             PlayerPOVPointer();
         }
@@ -87,7 +87,7 @@ public class Player : MonoBehaviour
             handFull = false;
         }
       
-        if(Input.GetKeyDown(KeyCode.E) &&  handFull && itemInHand.transform.GetComponent<ObjectInteractions>() != null)
+        if(Input.GetMouseButton(0) &&  handFull && itemInHand.transform.GetComponent<ObjectInteractions>() != null)
         {
             ObjectInteractions itemDescription = itemInHand.transform.GetComponent<ObjectInteractions>();
            
@@ -235,7 +235,6 @@ public class Player : MonoBehaviour
         {
             code[codeIndex] = cameraPointer.transform.name;           
             codeIndex++;
-
         }
         else if (cameraPointer.transform.name == "Cancel")
         {
@@ -252,10 +251,11 @@ public class Player : MonoBehaviour
             {
                 codeDisplay += code;
             }
-            Debug.Log(codeDisplay);
-            Debug.Log(cameraPointer.transform.parent.parent.name);
-
-
+           
+            if(codeDisplay == correctCode)
+            {
+                cameraPointer.transform.parent.parent.GetComponentInParent<Animator>().Play("Safe Door Open");
+            }
         }
 
     }
