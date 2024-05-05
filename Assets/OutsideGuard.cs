@@ -4,43 +4,24 @@ using UnityEngine;
 using UnityEngine.AI;
 public class OutsideGuard : Guard
 {
-    // [SerializeField] GameObject[] guard1Waypoints, guard2Waypoints;
+    
     [SerializeField] GameObject[] wayPointsTest;
     [SerializeField] GameObject player;
-    private Vector3[] guard1WapointsLocations, guard2WaypointsLocations, guardWaypointsTest;
+    private Vector3[]  guardWaypointsTest;
     private int guardWaypointIndex = 0;
     private float guardSpeed = 3.5f;
-    private enum Guard
-    {
-        Guard1,
-        Guard2
-    }
+    
     [SerializeField] Guard guardVersion;
     private void Awake()
-    {
-       
+    {       
         guardAgent = GetComponent<NavMeshAgent>();
-        ObtainWaypointLocations(wayPointsTest);     
-       // ObtainWaypointLocations(guard2Waypoints);     
-
+        ObtainWaypointLocations(wayPointsTest);              
     }
 
     // Update is called once per frame
     void Update()
     {
-        SightCone();
-        /*if( guardVersion.Equals(Guard.Guard1))
-        {
-            if(!guardAgent.pathPending && guardAgent.remainingDistance < 0.5f)
-            {
-
-                PatrolRoute(guard1WapointsLocations);
-            }          
-        }
-        else
-        {
-            PatrolRoute(guard2WaypointsLocations);
-        }*/
+        SightCone();       
         if (!guardAgent.pathPending && guardAgent.remainingDistance < 0.5f)
         {
 

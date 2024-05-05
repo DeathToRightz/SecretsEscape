@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -76,7 +77,12 @@ public class Player : MonoBehaviour
                     Destroy(cameraPointer.transform.gameObject);
                     Debug.Log("Dig");
                 }
-            }       
+            }  
+            
+        }
+        if(Input.GetKeyDown(KeyCode.E) && Physics.Raycast(cameraLocation.position,cameraLocation.forward,out cameraPointer, 5) && cameraPointer.transform.tag == "BackDoorKnob")
+        {
+            SceneManager.LoadScene(1);
         }
     }
     private void FixedUpdate()
