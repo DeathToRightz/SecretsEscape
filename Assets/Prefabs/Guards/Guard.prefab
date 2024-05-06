@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5212437586275386584}
   - component: {fileID: 8166754414763707787}
   - component: {fileID: 690910094609055484}
+  - component: {fileID: 4928176206052989449}
   m_Layer: 0
   m_Name: Guard
   m_TagString: Guard
@@ -78,6 +79,29 @@ MonoBehaviour:
   wayPointsTest: []
   player: {fileID: 4327367211008706130, guid: a50e1e89a39bab34ca97a87ae18bc809, type: 3}
   chasePlayerConstant: 0
+--- !u!136 &4928176206052989449
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88101512952067155}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.7373018
+  m_Height: 3.3270817
+  m_Direction: 1
+  m_Center: {x: 0.017046928, y: -0.61217976, z: 0}
 --- !u!1 &369880140817695227
 GameObject:
   m_ObjectHideFlags: 0

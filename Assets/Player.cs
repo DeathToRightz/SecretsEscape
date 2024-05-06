@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
         Physics.Raycast(cameraLocation.position, cameraLocation.forward, out cameraPointer, 2);
 
 
-        if (Input.GetMouseButtonDown(0) && cameraPointer.transform!=null)
+        if (Input.GetMouseButtonDown(0) && cameraPointer.transform!=null && itemInHand == null)
         {
             
             
@@ -84,6 +84,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F) && handFull)
         {
             Drop(itemInHandPointer.transform);
+            
             handFull = false;
         }
       
@@ -91,17 +92,14 @@ public class Player : MonoBehaviour
         {
             ObjectInteractions itemDescription = itemInHandPointer.transform.GetComponent<ObjectInteractions>();
             if (Physics.Raycast(cameraLocation.position,cameraLocation.forward,out cameraPointer, 3))
-            {
-                
-
+            {              
                 if (itemDescription.itemName == ObjectInteractions.items.Shovel && cameraPointer.transform.tag == "Dirt")
                 {
                     Dig();
                 }
                 else if(itemDescription.itemName == ObjectInteractions.items.Chair && cameraPointer.transform.tag == "Guard")
                 {
-                    Attack(itemInHand.transform.gameObject,cameraPointer.transform.parent.gameObject);
-                    
+                    Attack(itemInHand.transform.gameObject,cameraPointer.transform.gameObject);                  
                 }
                 else
                 {
@@ -222,7 +220,7 @@ public class Player : MonoBehaviour
         collider.enabled = true;
         item.parent = null;
         rb.constraints = RigidbodyConstraints.None;
-        
+        itemInHand = null;
     }
 
     private void DoorInteraction(RaycastHit cameraPointer)
@@ -275,7 +273,8 @@ public class Player : MonoBehaviour
     private void Attack(GameObject itemInHand, GameObject guard)
     {
         if (guard)
-        {         
+        {
+            Debug.Log("Attack");
             Destroy(guard);           
             Destroy(itemInHand);
             handFull = false;

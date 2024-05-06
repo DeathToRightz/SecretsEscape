@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 public class OutsideGuard : Guard
 {
     
@@ -81,6 +82,13 @@ public class OutsideGuard : Guard
         {
             guardAgent.speed = guardSpeed;
             return;
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            SceneManager.LoadScene("Lose");
         }
     }
 }
