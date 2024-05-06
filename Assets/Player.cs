@@ -110,10 +110,11 @@ public class Player : MonoBehaviour
                 }
             }
         }
-        /*if(Input.GetKeyDown(KeyCode.E) && Physics.Raycast(cameraLocation.position,cameraLocation.forward,out cameraPointer, 5) && cameraPointer.transform.tag == "BackDoorKnob")
+        
+        if(Input.GetMouseButtonDown(0) && Physics.Raycast(cameraLocation.position,cameraLocation.forward,out cameraPointer, 5) && cameraPointer.transform.tag == "BackDoorKnob")
         {
             SceneManager.LoadScene(1);
-        }*/
+        }
     }
     private void FixedUpdate()
     {
