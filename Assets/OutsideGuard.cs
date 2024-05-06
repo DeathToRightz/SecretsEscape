@@ -28,9 +28,9 @@ public class OutsideGuard : Guard
     void Update()
     {
         SightCone();       
-        if ( !chasePlayerConstant! && guardAgent.pathPending && guardAgent.remainingDistance < 0.5f )
+        if ( !chasePlayerConstant && !guardAgent.pathPending && guardAgent.remainingDistance < 0.5f )
         {
-
+            
             PatrolRoute(guardWaypointsTest);
         }
         if( chasePlayerConstant  )

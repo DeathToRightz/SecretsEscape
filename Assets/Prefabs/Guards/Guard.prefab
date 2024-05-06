@@ -76,8 +76,8 @@ MonoBehaviour:
   guardFOV: {fileID: 975185782836208213}
   guardAgent: {fileID: 0}
   wayPointsTest: []
-  player: {fileID: 0}
-  guardVersion: {fileID: 0}
+  player: {fileID: 4327367211008706130, guid: a50e1e89a39bab34ca97a87ae18bc809, type: 3}
+  chasePlayerConstant: 0
 --- !u!1 &369880140817695227
 GameObject:
   m_ObjectHideFlags: 0
