@@ -209,6 +209,7 @@ public class Player : MonoBehaviour
     {
         Rigidbody rb = item.GetComponent<Rigidbody>();
         Collider collider = rb.GetComponent<Collider>();
+        item.gameObject.isStatic = false;
         itemInHand = item.gameObject;
         collider.enabled = false;
         item.parent = hand;
