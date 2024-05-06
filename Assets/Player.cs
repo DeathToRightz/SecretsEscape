@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
 
     [Header("Hand Settings")]
     [SerializeField] Transform hand;
+    private GameObject itemInHand;
 
     [Header("Other Settings")]
     [SerializeField] LayerMask whatIsGround;
@@ -31,7 +32,7 @@ public class Player : MonoBehaviour
     private Rigidbody rb;
     private bool isGrounded;    
     private bool readyToJump;      
-    private RaycastHit itemInHand, cameraPointer;
+    private RaycastHit itemInHandPointer, cameraPointer;
     public bool handFull;
     public string[] code = new string[4];
     private string correctCode = "1234";
@@ -83,16 +84,16 @@ public class Player : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F) && handFull)
         {
-            Drop(itemInHand.transform);
+            Drop(itemInHandPointer.transform);
             handFull = false;
         }
       
-        if(Input.GetMouseButtonDown(0) && handFull && itemInHand.transform.GetComponent<ObjectInteractions>() != null)
+        if(Input.GetMouseButtonDown(0) && handFull && itemInHandPointer.transform.GetComponent<ObjectInteractions>() != null)
         {
      
             if(Physics.Raycast(cameraLocation.position,cameraLocation.forward,out cameraPointer, 3))
             {
-                ObjectInteractions itemDescription = itemInHand.transform.GetComponent<ObjectInteractions>();
+                ObjectInteractions itemDescription = itemInHandPointer.transform.GetComponent<ObjectInteractions>();
 
                 if (itemDescription.itemName == ObjectInteractions.items.Shovel && cameraPointer.transform.tag == "Dirt")
                 {
@@ -100,7 +101,7 @@ public class Player : MonoBehaviour
                 }
                 else if(itemDescription.itemName == ObjectInteractions.items.Chair && cameraPointer.transform.tag == "Guard")
                 {
-                    Attack(hand,cameraPointer.transform.parent.gameObject);
+                    Attack(itemInHand.transform.gameObject,cameraPointer.transform.parent.gameObject);
                     
                 }
                 else
@@ -179,12 +180,12 @@ public class Player : MonoBehaviour
     private void PickUpPOVPointer()
     {
        
-        if(Physics.Raycast(cameraLocation.position, cameraLocation.forward, out itemInHand, 4f))
+        if(Physics.Raycast(cameraLocation.position, cameraLocation.forward, out itemInHandPointer, 4f))
         {                     
                
-            if(itemInHand.transform.tag == "Pick Up" && !handFull)
+            if(itemInHandPointer.transform.tag == "Pick Up" && !handFull)
             {
-                PickUp(itemInHand.transform);
+                PickUp(itemInHandPointer.transform);
                 handFull = true;
             }
         }
@@ -208,6 +209,7 @@ public class Player : MonoBehaviour
     {
         Rigidbody rb = item.GetComponent<Rigidbody>();
         Collider collider = rb.GetComponent<Collider>();
+        itemInHand = item.gameObject;
         collider.enabled = false;
         item.parent = hand;
         item.position = hand.transform.position;
@@ -272,13 +274,13 @@ public class Player : MonoBehaviour
 
     }
 
-    private void Attack(Transform hand, GameObject guard)
+    private void Attack(GameObject itemInHand, GameObject guard)
     {
         if (guard)
-        {
-            Destroy(guard);
-            Destroy(hand.gameObject);
-            
+        {         
+            Destroy(guard);           
+            Destroy(itemInHand);
+            handFull = false;
         }
     }
 
