@@ -11,7 +11,7 @@ public class OutsideGuard : Guard
     private int guardWaypointIndex = 0;
     private float guardSpeed = 3.5f;
     
-    [SerializeField] Guard guardVersion;
+    //[SerializeField] Guard guardVersion;
     private void Awake()
     {       
         guardAgent = GetComponent<NavMeshAgent>();
