@@ -295,7 +295,7 @@ public class Player : MonoBehaviour
     {
         if(cameraPointer.transform.tag == "BackDoorKnob")
         {
-            SceneManager.LoadScene("Level2.1");
+            SceneManager.LoadScene("Level2.2");
         }
         if(cameraPointer.transform.tag == "FrontDoorKnob" && itemInHand.name == "File" )
         {
