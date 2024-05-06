@@ -54,10 +54,23 @@ public class Player : MonoBehaviour
         Debug.DrawRay(cameraLocation.position, cameraLocation.forward * 10, Color.blue);
         Physics.Raycast(cameraLocation.position, cameraLocation.forward, out cameraPointer, 2);
 
-
-        if (Input.GetMouseButtonDown(0) && cameraPointer.transform!=null)
+        if (Input.GetKeyDown(KeyCode.B))
         {
-            if (itemInHand == null)
+            
+            Debug.Log(cameraPointer.transform.parent.name);
+            Debug.Log(cameraPointer.transform.name);
+            Debug.Log(cameraPointer.transform.tag);
+            Debug.Log(itemInHand.name);
+        }
+
+        if (Input.GetMouseButtonDown(0) && cameraPointer.transform != null)
+        {
+            if (cameraPointer.transform.tag == "DoorKnob") { DoorInteraction(cameraPointer); }
+            if(cameraPointer.transform.parent != null) { if (cameraPointer.transform.parent.name == "Numpad") { EnterCode(cameraPointer); } }
+           
+            MoveBetweenLevels(cameraPointer); 
+            Debug.Log("Past change");
+            /*if (itemInHand == null)
             {
                 DoorInteraction(cameraPointer);
                 EnterCode(cameraPointer);
@@ -66,7 +79,7 @@ public class Player : MonoBehaviour
             else if (itemInHand != null)
             {
                 MoveBetweenLevels(cameraPointer);
-            }
+            }*/
 
 
         }          
