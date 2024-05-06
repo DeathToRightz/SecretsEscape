@@ -55,14 +55,18 @@ public class Player : MonoBehaviour
         Physics.Raycast(cameraLocation.position, cameraLocation.forward, out cameraPointer, 2);
 
 
-        if (Input.GetMouseButtonDown(0) && cameraPointer.transform!=null && itemInHand == null)
+        if (Input.GetMouseButtonDown(0) && cameraPointer.transform!=null)
         {
-            
-            
-            MoveBetweenLevels(cameraPointer);
-            DoorInteraction(cameraPointer);
-            EnterCode(cameraPointer);
-           
+            if (itemInHand == null)
+            {
+                DoorInteraction(cameraPointer);
+                EnterCode(cameraPointer);
+            }
+
+            else if (itemInHand != null)
+            {
+                MoveBetweenLevels(cameraPointer);
+            }
 
 
         }          
@@ -211,6 +215,7 @@ public class Player : MonoBehaviour
         item.position = hand.transform.position;
         rb.constraints = RigidbodyConstraints.FreezeAll;
         item.LookAt(transform.forward);
+        
     }
 
     private void Drop(Transform item)
@@ -292,12 +297,14 @@ public class Player : MonoBehaviour
 
     private void MoveBetweenLevels(RaycastHit cameraPoint)
     {
+        Debug.Log("Start changing");
         if(cameraPointer.transform.tag == "BackDoorKnob")
         {
             SceneManager.LoadScene("Level2.2");
         }
         if(cameraPointer.transform.tag == "FrontDoorKnob" && itemInHand.name == "File" )
         {
+            Debug.Log("Out");
             SceneManager.LoadScene("Level3");
         }
         if(cameraPointer.collider.tag == "CarDoorHandle")
