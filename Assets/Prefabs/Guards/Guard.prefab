@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 690910094609055484}
   m_Layer: 0
   m_Name: Guard
-  m_TagString: Untagged
+  m_TagString: Guard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,13 +75,9 @@ MonoBehaviour:
   seePlayer: 0
   guardFOV: {fileID: 975185782836208213}
   guardAgent: {fileID: 0}
-  guard1Waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  guard2Waypoints: []
+  wayPointsTest: []
   player: {fileID: 0}
-  guardVersion: 0
+  guardVersion: {fileID: 0}
 --- !u!1 &369880140817695227
 GameObject:
   m_ObjectHideFlags: 0

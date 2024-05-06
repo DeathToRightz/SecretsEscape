@@ -10,6 +10,7 @@ TagManager:
   - DoorKnob
   - File
   - safe
+  - Guard
   layers:
   - Default
   - TransparentFX
