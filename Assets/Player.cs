@@ -301,5 +301,9 @@ public class Player : MonoBehaviour
         {
             SceneManager.LoadScene("Level3");
         }
+        if(cameraPointer.transform.tag == "CarDoorHandle" && itemInHand.name == "File")
+        {
+            SceneManager.LoadScene("Win");
+        }
     }
 }

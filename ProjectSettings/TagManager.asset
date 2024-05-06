@@ -12,6 +12,7 @@ TagManager:
   - safe
   - Guard
   - FrontDoorKnob
+  - CarDoorHandle
   layers:
   - Default
   - TransparentFX
