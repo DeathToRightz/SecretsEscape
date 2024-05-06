@@ -11,6 +11,7 @@ TagManager:
   - File
   - safe
   - Guard
+  - FrontDoorKnob
   layers:
   - Default
   - TransparentFX

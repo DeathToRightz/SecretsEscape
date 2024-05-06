@@ -61,10 +61,9 @@ public class Player : MonoBehaviour
             //Debug.Log(cameraPointer.transform.name);
             if (cameraPointer.transform.parent.name == "Numpad") { EnterCode(cameraPointer); }
            
-            if (cameraPointer.transform.parent.name == "Door") { DoorInteraction(cameraPointer); }
-
-            if(cameraPointer.transform.parent.name != "Numpad" || cameraPointer.transform.parent.name != "Door") { return; }
-            
+            if (cameraPointer.transform.parent.name == "Door") { DoorInteraction(cameraPointer); }           
+           
+            MoveBetweenLevels(cameraPointer);
                     
         }          
       
@@ -111,10 +110,7 @@ public class Player : MonoBehaviour
             }
         }
         
-        if(Input.GetMouseButtonDown(0) && Physics.Raycast(cameraLocation.position,cameraLocation.forward,out cameraPointer, 5) && cameraPointer.transform.tag == "BackDoorKnob")
-        {
-            SceneManager.LoadScene(1);
-        }
+        
     }
     private void FixedUpdate()
     {
@@ -292,6 +288,18 @@ public class Player : MonoBehaviour
         {
             Destroy(cameraPointer.transform.gameObject);
             Debug.Log("Dig");
+        }
+    }
+
+    private void MoveBetweenLevels(RaycastHit cameraPoint)
+    {
+        if(cameraPointer.transform.tag == "BackDoorKnob")
+        {
+            SceneManager.LoadScene("Level2.1");
+        }
+        if(cameraPointer.transform.tag == "FrontDoorKnob" && itemInHand.name == "File" )
+        {
+            SceneManager.LoadScene("Level3");
         }
     }
 }
