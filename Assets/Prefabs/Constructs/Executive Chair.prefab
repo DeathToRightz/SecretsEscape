@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 1034683319685390904, guid: 81c204691c1da904f8a01e3262e7b370, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a0beb24c28d40324d9b995758ad8bb04, type: 2}
     - target: {fileID: 1791236444832205456, guid: 81c204691c1da904f8a01e3262e7b370, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -84,6 +88,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 8437949795542523803, guid: 81c204691c1da904f8a01e3262e7b370, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a0beb24c28d40324d9b995758ad8bb04, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
