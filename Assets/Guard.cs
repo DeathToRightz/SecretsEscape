@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class Guard : MonoBehaviour
 {
@@ -28,5 +29,12 @@ public class Guard : MonoBehaviour
             }
             Debug.DrawRay(guardFOV.position, Quaternion.Euler(0, i, 0) * transform.forward * 10, Color.red);
         }        
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Player")
+        {
+            SceneManager.LoadScene("Lose");
+        }
     }
 }

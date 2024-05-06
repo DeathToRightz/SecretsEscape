@@ -52,19 +52,19 @@ public class Player : MonoBehaviour
         GroundCheck();
         ControlSpeed();
         Debug.DrawRay(cameraLocation.position, cameraLocation.forward * 10, Color.blue);
-       
+        Physics.Raycast(cameraLocation.position, cameraLocation.forward, out cameraPointer, 2);
 
 
-        if (Input.GetMouseButtonDown(0) && Physics.Raycast(cameraLocation.position, cameraLocation.forward, out cameraPointer, 2))
+        if (Input.GetMouseButtonDown(0) && cameraPointer.transform!=null)
         {
             
-            //Debug.Log(cameraPointer.transform.name);
-            if (cameraPointer.transform.parent.name == "Numpad") { EnterCode(cameraPointer); }
-           
-            if (cameraPointer.transform.parent.name == "Door") { DoorInteraction(cameraPointer); }           
-           
+            
             MoveBetweenLevels(cameraPointer);
-                    
+            DoorInteraction(cameraPointer);
+            EnterCode(cameraPointer);
+           
+
+
         }          
       
         if(Input.GetKeyDown(KeyCode.Space) && readyToJump && isGrounded)
@@ -89,10 +89,10 @@ public class Player : MonoBehaviour
       
         if(Input.GetMouseButtonDown(0) && handFull && itemInHandPointer.transform.GetComponent<ObjectInteractions>() != null)
         {
-     
-            if(Physics.Raycast(cameraLocation.position,cameraLocation.forward,out cameraPointer, 3))
+            ObjectInteractions itemDescription = itemInHandPointer.transform.GetComponent<ObjectInteractions>();
+            if (Physics.Raycast(cameraLocation.position,cameraLocation.forward,out cameraPointer, 3))
             {
-                ObjectInteractions itemDescription = itemInHandPointer.transform.GetComponent<ObjectInteractions>();
+                
 
                 if (itemDescription.itemName == ObjectInteractions.items.Shovel && cameraPointer.transform.tag == "Dirt")
                 {
@@ -301,9 +301,13 @@ public class Player : MonoBehaviour
         {
             SceneManager.LoadScene("Level3");
         }
-        if(cameraPointer.transform.tag == "CarDoorHandle" && itemInHand.name == "File")
+        if(cameraPointer.collider.tag == "CarDoorHandle")
         {
             SceneManager.LoadScene("Win");
+        }
+        else
+        {
+            return;
         }
     }
 }
