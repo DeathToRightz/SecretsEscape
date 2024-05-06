@@ -7,6 +7,8 @@ public class OutsideGuard : Guard
     
     [SerializeField] GameObject[] wayPointsTest;
     [SerializeField] GameObject player;
+    [SerializeField] bool chasePlayerConstant;
+    
     private Vector3[]  guardWaypointsTest;
     private int guardWaypointIndex = 0;
     private float guardSpeed = 3.5f;
@@ -15,17 +17,27 @@ public class OutsideGuard : Guard
     private void Awake()
     {       
         guardAgent = GetComponent<NavMeshAgent>();
-        ObtainWaypointLocations(wayPointsTest);              
+        ObtainWaypointLocations(wayPointsTest);
+        if (chasePlayerConstant)
+        {
+            guardSpeed = 3.5f * 2;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         SightCone();       
-        if (!guardAgent.pathPending && guardAgent.remainingDistance < 0.5f)
+        if ( !chasePlayerConstant! && guardAgent.pathPending && guardAgent.remainingDistance < 0.5f )
         {
 
             PatrolRoute(guardWaypointsTest);
+        }
+        if( chasePlayerConstant  )
+        {
+           
+            guardAgent.destination = player.transform.position;
+            
         }
 
 
