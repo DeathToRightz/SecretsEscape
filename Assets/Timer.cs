@@ -22,15 +22,16 @@ public class Timer : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    private void Start()
-    {
-       
-    }
+   
 
     // Update is called once per frame
     void Update()
     {
-        //ChangeTime(score);
+        if (GameObject.FindGameObjectWithTag("Player") == null) { Cursor.lockState = CursorLockMode.None; Cursor.visible = true; }
+        if(SceneManager.GetActiveScene().buildIndex >= 5)
+        {
+            score = 1000;
+        }
         if(SceneManager.GetActiveScene().name == "Win")
         {
             DisplayScore();
