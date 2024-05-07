@@ -28,16 +28,19 @@ public class Timer : MonoBehaviour
     void Update()
     {
         if (GameObject.FindGameObjectWithTag("Player") == null) { Cursor.lockState = CursorLockMode.None; Cursor.visible = true; }
-        if(SceneManager.GetActiveScene().buildIndex >= 5)
-        {
-            score = 1000;
-        }
+        
         if(SceneManager.GetActiveScene().name == "Win")
         {
             DisplayScore();
             return;
         }
-        else
+        
+        if(SceneManager.GetActiveScene().buildIndex <= 3)
+        {
+            score = 1000f;
+        }
+
+        else if(SceneManager.GetActiveScene().buildIndex >= 4)
         {
             score -= Time.deltaTime;
             timerDisplayTxt.text = score.ToString();
