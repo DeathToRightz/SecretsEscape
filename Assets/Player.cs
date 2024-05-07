@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 using UnityEngine.Animations;
+using TMPro;
 public class Player : MonoBehaviour
 {
 
@@ -34,9 +35,8 @@ public class Player : MonoBehaviour
     private bool readyToJump;      
     private RaycastHit itemInHandPointer, cameraPointer;
     public bool handFull;
-    public string[] code = new string[4];
+    private string[] code = new string[4];
     private string correctCode = "1234";
-    //private string[] correctCode = new string[] {"1","2","3","4"};
     private int codeIndex = 0;
     void Start()
     {
@@ -44,6 +44,7 @@ public class Player : MonoBehaviour
         handFull = false;
         readyToJump = true;
         rb = GetComponent<Rigidbody>();
+        Timer.Instance.timerDisplayTxt = GetComponentInChildren<TMP_Text>();
     }
 
     // Update is called once per frame
@@ -69,19 +70,6 @@ public class Player : MonoBehaviour
             if(cameraPointer.transform.parent != null) { if (cameraPointer.transform.parent.name == "Numpad") { EnterCode(cameraPointer); } }
            
             MoveBetweenLevels(cameraPointer); 
-            Debug.Log("Past change");
-            /*if (itemInHand == null)
-            {
-                DoorInteraction(cameraPointer);
-                EnterCode(cameraPointer);
-            }
-
-            else if (itemInHand != null)
-            {
-                MoveBetweenLevels(cameraPointer);
-            }*/
-
-
         }          
       
         if(Input.GetKeyDown(KeyCode.Space) && readyToJump && isGrounded)
